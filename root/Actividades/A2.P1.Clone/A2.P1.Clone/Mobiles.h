@@ -9,36 +9,69 @@ using namespace std;
 class Mobiles
 {
 protected:
-	int* power;
-	string* user;
-	string marca;
-	string model;
+	string* brand;
+	string* model;
+	string user;
+	bool power;
 
 public:
 	virtual Mobiles* clone() = 0;
 
-	bool encender(int* status)
-	{
+	Mobiles(){}
 
+	bool turnOn(bool* status)
+	{
+		if (*status == 0)
+		{
+			cout << *brand << " device is turned ON." << endl;
+			power = 1;
+			return power;
+		}
+
+		else
+		{
+			cout << *brand << " device is already turned ON." << endl;
+		}
 	}
 
-	bool apagar(int* status)
+	bool turnOff(bool* status)
 	{
+		if (*status == 1)
+		{
+			cout << *brand << " device is turned OFF." << endl;
+			power = 0;
+			return power;
+		}
 
+		else
+		{
+			cout << *brand << " device is already turned OFF." << endl;
+		}
 	}
 
-	void reinicia()
+	void restart(bool* status)
 	{
-
+		if()
 	}
 
-	void restaurar()
+	void reset()
 	{
 
 	}
 };
 
-class Tablet : public Mobiles
+template <class Subclass>
+class CloneCRTP : public Mobiles 
+{
+public:
+	Mobiles clone() 
+	{
+		return new Subclass(*this);
+		return new dynamic_cast<Subclass&>(*this);
+	}
+};
+
+class Tablet : public CloneCRTP<Tablet>
 {
 public:
 	Tablet(const Tablet& temp)
@@ -51,7 +84,7 @@ public:
 	}
 };
 
-class Smartphone : public Mobiles
+class Smartphone : public CloneCRTP<Smartphone>
 {
 public:
 	Smartphone(const Smartphone& temp)
@@ -64,7 +97,7 @@ public:
 	}
 };
 
-class Smartwatch : public Mobiles
+class Smartwatch : public CloneCRTP<Smartwatch>
 {
 public:
 	Smartwatch(const Smartwatch& temp)

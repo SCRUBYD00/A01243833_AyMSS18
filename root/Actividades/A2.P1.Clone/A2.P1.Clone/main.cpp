@@ -1,6 +1,6 @@
 //#include "Clone.h"
 //#include "Prototype.h"
-#include "Moviles.h"
+#include "Mobiles.h"
 
 int main()
 {
@@ -22,7 +22,7 @@ int main()
 	// main para "Prototype.h"
 	/*Concrete1* c1 = new Concrete1;*/
 
-	Smartphone* s1 = new Smartphone;
+
 
 	int x;
 	cin >> x;
