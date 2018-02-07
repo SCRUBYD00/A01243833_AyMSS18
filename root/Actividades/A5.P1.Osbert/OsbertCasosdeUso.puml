@@ -1,0 +1,16 @@
+@startuml Casos de Uso
+left to right direction
+skinparam packageStyle rectangle
+
+actor Osbert
+actor Cliente
+
+rectangle Sistema_de_Cuadros {
+    Osbert --> (Descripcion del Cuadro)
+    Osbert --> (Registro de Subastas)
+    Osbert --> (Precio)
+    Osbert --> (Venta)
+
+    (Venta) <-- Cliente
+}
+@enduml

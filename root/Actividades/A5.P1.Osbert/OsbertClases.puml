@@ -1,0 +1,39 @@
+@startuml Clases
+
+class Osbert {
+    + string Compra()
+    + string descripcionCuadro()
+    + string ventaCuadro()
+}
+
+class Galeria {
+    - galeria <Cuadro> : List
+}
+
+class Subasta {
+    - string autor
+    - string fecha
+    - double precio
+}
+
+class Cuadro {
+    - string descripcion
+    - string autor
+    - string fecha
+    - double precio
+}
+
+class Cliente {
+    bool compra()
+}
+
+class Registro {
+    registro <DatosVenta> : List
+}
+
+class DatosVenta {
+    - Cuadro c
+    - string nombre
+    - string direccion
+}
+@enduml
