@@ -3,12 +3,8 @@
 int main()
 {
 	Clock* instance1 = Clock::getInstance();
-	Clock::getInstance();
-	Clock* instance2 = Clock::getInstance();
-	Clock::getInstance();
-
-	cout << instance1 << endl;
-	cout << instance2 << endl;
+	instance1->getTime();
+	instance1->deleteInstance();
 
 	int x;
 	cin >> x;

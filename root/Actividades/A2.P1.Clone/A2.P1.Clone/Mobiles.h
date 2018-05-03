@@ -12,71 +12,66 @@ protected:
 	string* brand;
 	string* model;
 	string user;
-	bool power;
+	string version;
 
 public:
 	virtual Mobiles* clone() = 0;
 
 	Mobiles(){}
 
-	bool turnOn(bool* status)
+	Mobiles(string brand, string model, string user, string version) : brand(new string(brand)), model(new string(model)), user(user), version(version)
 	{
-		if (*status == 0)
-		{
-			cout << *brand << " device is turned ON." << endl;
-			power = 1;
-			return power;
-		}
 
-		else
-		{
-			cout << *brand << " device is already turned ON." << endl;
-		}
 	}
 
-	bool turnOff(bool* status)
+	void turnOn()
 	{
-		if (*status == 1)
-		{
-			cout << *brand << " device is turned OFF." << endl;
-			power = 0;
-			return power;
-		}
-
-		else
-		{
-			cout << *brand << " device is already turned OFF." << endl;
-		}
+		cout << user << "'s device is on" << endl;
 	}
 
-	void restart(bool* status)
+	void turnOff()
 	{
-		if()
+		cout << user << "'s device is off" << endl;
+	}
+
+	void restart()
+	{
+		cout << user << "'s device restarted" << endl;
 	}
 
 	void reset()
 	{
-
+		cout << user << "'s device reset" << endl;
 	}
 };
 
-template <class Subclass>
-class CloneCRTP : public Mobiles 
+template <class Base, class Subclass>
+class CloneCRTP : public Base 
 {
 public:
-	Mobiles clone() 
+	Base* clone() 
 	{
-		return new Subclass(*this);
-		return new dynamic_cast<Subclass&>(*this);
+		return new Subclass(dynamic_cast<Subclass&>(*this));
 	}
 };
 
-class Tablet : public CloneCRTP<Tablet>
+class Tablet : public CloneCRTP<Mobiles,Tablet>
 {
 public:
+	Tablet(string b, string m, string u, string v)
+	{
+		brand = &b;
+		model = &m;
+		user = u;
+		version = v;
+	}
+
 	Tablet(const Tablet& temp)
 	{
-
+		brand = temp.brand;
+		model = temp.model;
+		user = temp.user;
+		version = temp.version;
 	}
 
 	Mobiles* clone() {
@@ -84,12 +79,23 @@ public:
 	}
 };
 
-class Smartphone : public CloneCRTP<Smartphone>
+class Smartphone : public CloneCRTP<Mobiles, Smartphone>
 {
 public:
+	Smartphone(string b, string m, string u, string v)
+	{
+		brand = &b;
+		model = &m;
+		user = u;
+		version = v;
+	}
+
 	Smartphone(const Smartphone& temp)
 	{
-
+		brand = temp.brand;
+		model = temp.model;
+		user = temp.user;
+		version = temp.version;
 	}
 
 	Mobiles* clone() {
@@ -97,12 +103,23 @@ public:
 	}
 };
 
-class Smartwatch : public CloneCRTP<Smartwatch>
+class Smartwatch : public CloneCRTP<Mobiles, Smartwatch>
 {
 public:
+	Smartwatch(string b, string m, string u, string v)
+	{
+		brand = &b;
+		model = &m;
+		user = u;
+		version = v;
+	}
+
 	Smartwatch(const Smartwatch& temp)
 	{
-
+		brand = temp.brand;
+		model = temp.model;
+		user = temp.user;
+		version = temp.version;
 	}
 
 	Mobiles* clone() {
